@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { ChuletonesService } from '../../services/chuletones.service';
+import { ChuletonesListComponent } from '../list/list';
 
 @Component({
   selector: 'app-chuletones-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ChuletonesListComponent],
   templateUrl: './form.html',
   styleUrls: ['./form.scss']
 })

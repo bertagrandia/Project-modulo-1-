@@ -27,6 +27,10 @@ export class LoginComponent implements OnInit {
       email: [''],
       password: ['']
     });
+
+    if (this.auth.isLoggedIn()) {
+      this.router.navigate(['/chuletones']);
+    }
   }
 
   submit() {

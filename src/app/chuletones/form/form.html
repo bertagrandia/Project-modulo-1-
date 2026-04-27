@@ -1,11 +1,32 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="form" (ngSubmit)="submit()" class="chuletones-form">
 
-   <input formControlName="tipo" placeholder="Tipo">
-   <input formControlName="origen" placeholder="Origen">
-   <input type="number" formControlName="peso" placeholder="Peso">
-   <input type="number" formControlName="maduracion" placeholder="Maduración">
-   <input type="number" formControlName="cantidad" placeholder="Cantidad">
+   <label>
+      Tipo
+      <input formControlName="tipo" placeholder="Tipo" />
+   </label>
+
+   <label>
+      Origen
+      <input formControlName="origen" placeholder="Origen" />
+   </label>
+
+   <label>
+      Peso (g)
+      <input type="number" formControlName="peso" placeholder="Peso en g" />
+   </label>
+
+   <label>
+      Maduración (meses)
+      <input type="number" formControlName="maduracion" placeholder="Maduración en meses" />
+   </label>
+
+   <label>
+      Cantidad
+      <input type="number" formControlName="cantidad" placeholder="Cantidad" />
+   </label>
 
    <button type="submit">Añadir</button>
 
 </form>
+
+<app-chuletones-list></app-chuletones-list>
