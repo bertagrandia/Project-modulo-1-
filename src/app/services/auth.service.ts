@@ -1,41 +1,29 @@
 import { Injectable } from '@angular/core';
+import {
+   Auth,
+   signInWithEmailAndPassword,
+   createUserWithEmailAndPassword,
+   signOut
+} from '@angular/fire/auth';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-   private readonly userKey = 'user';
-   private readonly currentUserKey = 'currentUser';
+   constructor(private auth: Auth) { }
 
-   register(user: any) {
-      localStorage.setItem(this.userKey, JSON.stringify(user));
+   register(email: string, password: string) {
+      return createUserWithEmailAndPassword(this.auth, email, password);
    }
 
-   login(email: string, password: string): boolean {
-      const user = this.getRegisteredUser();
-
-      if (!user) return false;
-
-      const valid = user.email === email && user.password === password;
-      if (valid) {
-         localStorage.setItem(this.currentUserKey, JSON.stringify(user));
-      }
-
-      return valid;
-   }
-
-   getRegisteredUser(): any {
-      return JSON.parse(localStorage.getItem(this.userKey) || 'null');
-   }
-
-   getCurrentUser(): any {
-      return JSON.parse(localStorage.getItem(this.currentUserKey) || 'null');
-   }
-
-   isLoggedIn(): boolean {
-      return !!this.getCurrentUser();
+   login(email: string, password: string) {
+      return signInWithEmailAndPassword(this.auth, email, password);
    }
 
    logout() {
-      localStorage.removeItem(this.currentUserKey);
+      return signOut(this.auth);
+   }
+
+   getCurrentUser() {
+      return this.auth.currentUser;
    }
 }

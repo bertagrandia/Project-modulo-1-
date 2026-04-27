@@ -3,11 +3,10 @@ import { provideRouter } from '@angular/router';
 import { importProvidersFrom } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-
+import { getAuth } from "firebase/auth";
 import { routes } from './app.routes';
 import { provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
+import { provideAuth } from '@angular/fire/auth';
 
 
 const firebaseConfig = {

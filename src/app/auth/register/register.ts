@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -23,17 +22,29 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.form = this.fb.group({
       name: [''],
-      email: [''],
-      password: ['']
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
+
   }
 
   submit() {
-    this.auth.register(this.form.value);
-    alert('Registro correcto');
-    this.form.reset();
-    this.router.navigate(['/login']);
+
+    const { email, password } = this.form.value;
+
+    this.auth.register(email, password)
+      .then(() => {
+        alert('Registro correcto');
+        this.form.reset();
+        this.router.navigate(['/login']);
+      })
+      .catch((err) => {
+        console.error(err);
+        alert(err.message);
+      });
+
   }
 }

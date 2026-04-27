@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -23,27 +22,26 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.form = this.fb.group({
-      email: [''],
-      password: ['']
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
 
-    if (this.auth.isLoggedIn()) {
-      this.router.navigate(['/chuletones']);
-    }
   }
 
   submit() {
-    const ok = this.auth.login(
-      this.form.value.email,
-      this.form.value.password
-    );
 
-    if (ok) {
-      alert('Login correcto');
-      this.router.navigate(['/chuletones']);
-    } else {
-      alert('Error de login');
-    }
+    const { email, password } = this.form.value;
+
+    this.auth.login(email, password)
+      .then(() => {
+        alert('Login correcto');
+        this.router.navigate(['/form']);
+      })
+      .catch(() => {
+        alert('Error de login');
+      });
+
   }
 }
