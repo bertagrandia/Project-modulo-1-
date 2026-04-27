@@ -22,9 +22,10 @@ export class ChuletonesFormComponent {
     this.form = this.fb.group({
       tipo: [''],
       origen: [''],
+      precio: [0],
       peso: [0],
       maduracion: [0],
-      cantidad: [1]
+      cantidad: [1],
     });
   }
 

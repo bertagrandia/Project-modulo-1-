@@ -1,9 +1,20 @@
 <h3>Total chuletones: {{ service.count() }}</h3>
-<button class="add-button" routerLink="/form">Añadir chuletón</button>
+
+<button class="add-button" routerLink="/form">
+   Añadir chuletón
+</button>
+
 <ul *ngIf="service.chuletones().length > 0; else emptyList">
+
    <li *ngFor="let c of service.chuletones()">
-      {{ c.tipo }} - {{ c.origen }} - {{ c.peso }}g - x{{ c.cantidad }}
+      {{ c.tipo }} -
+      {{ c.origen }} -
+      {{ c.peso }}g -
+      {{ c.cantidad }}x -
+      {{ c.cantidad * c.precio }}€ -
+      ({{ c.maduracion }} meses)
    </li>
+
 </ul>
 
 <ng-template #emptyList>
