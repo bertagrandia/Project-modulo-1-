@@ -1,1 +1,11 @@
-<p>form works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+   <input formControlName="tipo" placeholder="Tipo">
+   <input formControlName="origen" placeholder="Origen">
+   <input type="number" formControlName="peso" placeholder="Peso">
+   <input type="number" formControlName="maduracion" placeholder="Maduración">
+   <input type="number" formControlName="cantidad" placeholder="Cantidad">
+
+   <button type="submit">Añadir</button>
+
+</form>

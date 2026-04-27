@@ -1,1 +1,13 @@
-<p>register works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+   <input formControlName="name" placeholder="Nombre" required>
+   <input type="email" formControlName="email" placeholder="Email" required>
+   <input type="password" formControlName="password" placeholder="Password" required>
+
+   <button type="submit" [disabled]="form.invalid">Registrar</button>
+
+</form>
+
+<p>
+   ¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a>
+</p>
